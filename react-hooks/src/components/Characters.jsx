@@ -1,7 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
+
+const initialState = {
+  favorites: [],
+};
+
+const favoriteReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_TO_FAVORITE":
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
+
+    default:
+      return state;
+  }
+};
 
 function Characters() {
   const [characters, serCharacters] = useState([]);
+
+  // vamos a incorporar nuestro reducer
+  const [favorites, dispatch] = useReducer(favoriteReducer, initialState);
 
   // le pasamos dos valores,
   // - El primer valor una funcion, adonde estara la logica
@@ -16,10 +36,23 @@ function Characters() {
     []
   );
 
+  const handleClick = (favorite) => {
+    dispatch({ type: "ADD_TO_FAVORITE", payload: favorite });
+  };
+
   return (
     <div className="Characters">
+      {favorites.favorites.map((favorite) => (
+        <li key={favorite.id}>{favorite.name}</li>
+      ))}
+
       {characters.map((character) => (
-        <h2>{character.name}</h2>
+        <div className="item" key={character.id}>
+          <h2>{character.name}</h2>
+          <button type="button" onClick={() => handleClick(character)}>
+            Agregar favoritos
+          </button>
+        </div>
       ))}
     </div>
   );

@@ -64,3 +64,15 @@ Nuestro estado puede ser de los siguente tipos:
 -Object
 
 -Array
+
+## useReducer: como useState, pero más escalable
+
+* Como useState, pero más escalable
+* Implementa una forma más amigables y llena de caracteristicas para trabajar con el estado
+* useReducer a menudo es preferible a useState cuando:
+  * se tiene una lógica compleja que involucra múltiples subvalores
+  * el próximo estado depende del anterior.
+
+Mas informacion:
+* https://platzi.com/blog/usestate-vs-usereducer/
+* https://amanhimself.hashnode.dev/how-to-manage-state-in-react-apps-with-usereducer-and-usecontext-hooks
