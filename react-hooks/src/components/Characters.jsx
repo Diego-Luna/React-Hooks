@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useMemo } from "react";
 
 const initialState = {
   favorites: [],
@@ -23,6 +23,8 @@ function Characters() {
   // vamos a incorporar nuestro reducer
   const [favorites, dispatch] = useReducer(favoriteReducer, initialState);
 
+  const [search, setSearch] = useState("");
+
   // le pasamos dos valores,
   // - El primer valor una funcion, adonde estara la logica
   // - Una variable que va estar escuchando si tiene un cambio
@@ -40,13 +42,34 @@ function Characters() {
     dispatch({ type: "ADD_TO_FAVORITE", payload: favorite });
   };
 
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+  };
+
+  // const filteredUsers = characters.filter((user) => {
+  //   return user.name.toLowerCase().includes(search.toLowerCase());
+  // });
+
+  const filteredUsers = useMemo(
+    () =>
+      characters.filter((user) => {
+        return user.name.toLowerCase().includes(search.toLowerCase());
+      }),
+    [characters, search]
+  );
+
   return (
     <div className="Characters">
       {favorites.favorites.map((favorite) => (
         <li key={favorite.id}>{favorite.name}</li>
       ))}
 
-      {characters.map((character) => (
+      <div className="Search">
+        <input type="text" value={search} onChange={handleSearch} />
+      </div>
+
+      {/* {characters.map((character) => ( */}
+      {filteredUsers.map((character) => (
         <div className="item" key={character.id}>
           <h2>{character.name}</h2>
           <button type="button" onClick={() => handleClick(character)}>
