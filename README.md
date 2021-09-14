@@ -157,5 +157,17 @@ function memoFibonacci(n) {
   return memo[n];
 }
 ```
+
 Ahora el cálculo de memoFibonacci(4) es mucho más corto.
 
+## useMemo: evita cálculos innecesarios en componentes
+
+useMemo nos permitirá usar la memoización de forma simple, como antes anterior, esto nos permite almacenar los resultados de una función para que, en caso de enviar los mismo argumentos que antes, ésta no haga los cálculos otra vez sino que devuelva el resultado que registró antes.
+
+Guiándome un poco de las Documentación de React Hooks, hice un boceto de lo que sería el uso básico de useMemo:
+
+```js
+const memoValue = useMemo(() => myFuncion(a, b), [valueToWach]);
+```
+
+Donde myFunction será la función que no queremos que haga los cálculos siempre, y el valueToWatch es la variable que, al cambiar de valor, hará que nuestro memo se ejecute (igual que el segundo argumento del useEffect)
