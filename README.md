@@ -191,6 +191,27 @@ Uso de la referencia
 conceptos claves:
 useRef.- devuelve un objeto ref mutable cuya propiedad .current se inicializa con el argumento pasado (initialValue). El objeto devuelto se mantendrá persistente durante la vida completa del componente
 
-Referencias: https://es.reactjs.org/docs/hooks-reference.html#useref 
+Referencias: https://es.reactjs.org/docs/hooks-reference.html#useref
 
 RESUMEN: use ref nos sirve para obtener un elemento del DOM construido por React de tal forma que podamos acceder a sus atributos de una forma imperativa
+
+## useCallback: evita cálculos innecesarios en funciones
+
+- Cada vez que hacemos un render se vuelve a construir las referencias a las funciones
+- La solución para este problema es usar useCallback el cual solo genera una referencia para una función
+- Es decir que memoriza la funcion
+  a través de la lista de dependencias que mandamos cuando lo generamos, estamos indicando cuando debe volver a memorizar esa función, es decir cuando cambien esos valores
+- Esto es útil cuando se transfieren callbacks a componentes hijos optimizados que dependen de la igualdad de referencia para evitar renders innecesarios
+
+```js
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
+```
+Ideas/conceptos claves
+
+useCallback.- Memoriza una función
+
+recursos
+
+Referencia: https://es.reactjs.org/docs/hooks-reference.html#usecallback
