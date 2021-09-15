@@ -171,3 +171,26 @@ const memoValue = useMemo(() => myFuncion(a, b), [valueToWach]);
 ```
 
 Donde myFunction será la función que no queremos que haga los cálculos siempre, y el valueToWatch es la variable que, al cambiar de valor, hará que nuestro memo se ejecute (igual que el segundo argumento del useEffect)
+
+## useRef: manejo profesional de inputs y formularios
+
+**Manejo profesional de inputs y formularios**
+
+Creación de la referencia
+
+```js
+const refContainer = useRef(initialValue);
+```
+
+Uso de la referencia
+
+```js
+<input type="text" value={search} ref={searchInput} onChange={handleSearch} />
+```
+
+conceptos claves:
+useRef.- devuelve un objeto ref mutable cuya propiedad .current se inicializa con el argumento pasado (initialValue). El objeto devuelto se mantendrá persistente durante la vida completa del componente
+
+Referencias: https://es.reactjs.org/docs/hooks-reference.html#useref 
+
+RESUMEN: use ref nos sirve para obtener un elemento del DOM construido por React de tal forma que podamos acceder a sus atributos de una forma imperativa

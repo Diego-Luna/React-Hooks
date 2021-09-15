@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useMemo } from "react";
+import React, { useState, useEffect, useReducer, useMemo, useRef } from "react";
 
 const initialState = {
   favorites: [],
@@ -25,6 +25,8 @@ function Characters() {
 
   const [search, setSearch] = useState("");
 
+  const searchInput = useRef(null);
+
   // le pasamos dos valores,
   // - El primer valor una funcion, adonde estara la logica
   // - Una variable que va estar escuchando si tiene un cambio
@@ -42,8 +44,10 @@ function Characters() {
     dispatch({ type: "ADD_TO_FAVORITE", payload: favorite });
   };
 
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
+  const handleSearch = () => {
+    // setSearch(event.target.value);
+    // la mejor forma de manegar formularios en react es: useRef
+    setSearch(searchInput.current.value);
   };
 
   // const filteredUsers = characters.filter((user) => {
@@ -65,7 +69,12 @@ function Characters() {
       ))}
 
       <div className="Search">
-        <input type="text" value={search} onChange={handleSearch} />
+        <input
+          type="text"
+          value={search}
+          ref={searchInput}
+          onChange={handleSearch}
+        />
       </div>
 
       {/* {characters.map((character) => ( */}
