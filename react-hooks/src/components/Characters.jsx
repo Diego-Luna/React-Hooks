@@ -1,12 +1,14 @@
 import React, {
   useState,
-  useEffect,
   useReducer,
   useMemo,
   useRef,
   useCallback,
 } from "react";
 import Search from "./Search";
+import useCharacters from "../hooks/useCharater";
+
+const API = "https://rickandmortyapi.com/api/character/";
 
 const initialState = {
   favorites: [],
@@ -26,8 +28,6 @@ const favoriteReducer = (state, action) => {
 };
 
 function Characters() {
-  const [characters, serCharacters] = useState([]);
-
   // vamos a incorporar nuestro reducer
   const [favorites, dispatch] = useReducer(favoriteReducer, initialState);
 
@@ -35,18 +35,7 @@ function Characters() {
 
   const searchInput = useRef(null);
 
-  // le pasamos dos valores,
-  // - El primer valor una funcion, adonde estara la logica
-  // - Una variable que va estar escuchando si tiene un cambio
-  useEffect(
-    () => {
-      fetch("https://rickandmortyapi.com/api/character/")
-        .then((response) => response.json())
-        .then((data) => serCharacters(data.results));
-    },
-    // al poner le el array basio, solo lo hace una ves, en el render
-    []
-  );
+  const characters = useCharacters(API);
 
   const handleClick = (favorite) => {
     dispatch({ type: "ADD_TO_FAVORITE", payload: favorite });
