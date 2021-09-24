@@ -647,3 +647,69 @@ wpc //les saldra para completar
 
 }
 ```
+
+## Loaders de Webpack para preprocesadores CSS
+
+¿Quieres utilizar tu preprocesador favorito (como Sass, Less o Stylus) para crear los estilos en tus aplicaciones con React.js?
+
+### Configuración de tu proyecto con Sass
+Primero debemos de instalar las dependencias necesarias para darle soporte a Sass dentro de nuestro proyecto:
+```
+npm install --save-dev sass-loader node-sass
+```
+
+Una vez agregadas las dependencias necesarias, debemos agregar una nueva regla a la configuración de Webpack en la parte de rules:
+
+```
+{
+	test: /\.scss$/,
+	loader: [
+		MiniCSSExtractPlugin.loader,
+		'css-loader',
+		'sass-loader'
+	]
+}
+```
+Ahora puedes agregar archivos Sass a cada componente y tendrás el mismo resultado que configurar directamente CSS.
+
+## Configuración de tu proyecto con Less
+
+Para darle soporte a Less dentro del proyecto debemos repetir los pasos anteriores, pero con la configuración apropiada para utilizar Less.
+
+```
+npm install --save-dev less less-loader
+```
+
+Agregar la configuración de Less a Webpack
+
+```
+{
+	test: /\.less$/,
+	loader: [
+		MiniCSSExtractPlugin.loader,
+		'css-loader',
+		'less-loader'
+	]
+}
+```
+
+## Configuración de tu proyecto con Stylus
+
+Siguiendo el ejemplo de las configuraciones previas para Sass y Less vamos a repetir los pasos para agregar soporte a Stylus.
+
+```
+npm install --save-dev stylus stylus-loader
+```
+
+Ahora agregamos la configuración de Stylus a Webpack:
+
+```
+{
+	test: /\.styl$/,
+	loader: [
+		MiniCSSExtractPlugin.loader,
+		'css-loader',
+		'stylus-loader'
+	]
+}
+```
