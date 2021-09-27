@@ -1,9 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Switch, Router, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from '../containers/Home';
+import Checkout from '../containers/Checkout';
+import Information from '../containers/Information';
+import Payment from '../containers/Payment';
+import Success from '../containers/Sucess';
+import NotFound from '../containers/NotFound';
 
-
-const App = () => { 
-  return (
+const App = () => (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home} />
@@ -16,7 +20,6 @@ const App = () => {
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
-  )
-};
+  );
 
 export default App;
