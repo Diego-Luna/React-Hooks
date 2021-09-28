@@ -1,10 +1,17 @@
 import React from 'react'
+import '../styles/components/Success.css';
 
 function Sucess() {
   return (
-    <h1>
-      Sucess
-    </h1>
+    <div className="Success">
+      <div className="Success-content">
+        <h2>Diego, Gracias por tu compra</h2>
+        <span>Tu pedido lelgara en 3 dias a tu direccion:</span>
+        <div className="Success-map">
+          Google Maps
+        </div>
+      </div>
+    </div>
   )
 }
 
