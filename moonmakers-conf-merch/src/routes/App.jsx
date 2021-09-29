@@ -10,21 +10,31 @@ import NotFound from '../containers/NotFound';
 
 import Layout from '../components/Layout';
 
-const App = () => (
-  <BrowserRouter>
-    <Layout>
-      <Switch>
-        <Route exact path="/" component={Home} />
+// importamos el estado de la aplicacion
+import AppContext from '../context/AppContex';
+import useInitialState from '../hooks/useInitialState';
 
-        <Route exact path="/checkout" component={Checkout} />
-        <Route exact path="/checkout/informatio" component={Information} />
-        <Route exact path="/checkout/payment" component={Payment} />
-        <Route exact path="/checkout/success" component={Success} />
+const App = () => {
+  const initialState = useInitialState();
 
-        <Route component={NotFound} />
-      </Switch>
-    </Layout>
-  </BrowserRouter>
-);
+  return (
+    <AppContext.Provider value={initialState}>
+      <BrowserRouter>
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={Home} />
+
+            <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/checkout/informatio" component={Information} />
+            <Route exact path="/checkout/payment" component={Payment} />
+            <Route exact path="/checkout/success" component={Success} />
+
+            <Route component={NotFound} />
+          </Switch>
+        </Layout>
+      </BrowserRouter>
+    </AppContext.Provider>
+  );
+};
 
 export default App;
