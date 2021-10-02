@@ -14,7 +14,7 @@ jobs:
         run: npm run build
         env:
           GOOGLEMAPSAPIKEY: ${{ secrets.GOOGLEMAPSAPIKEY }}
-   	      CLIENT_ID_PP: ${{ secrets.CLIENT_ID_PP }}
+          CLIENT_ID_PP: ${{ secrets.CLIENT_ID_PP }}
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
