@@ -24,7 +24,6 @@ const useInitialState = () => {
       ...state,
       buyer: [...state.buyer, payload],
     });
-
   };
 
   const addNewOrder = (payload) => {
