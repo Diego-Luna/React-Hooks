@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@firebase
+        uses: actions/checkout@main
       - name: Install Dependencies
         run: npm install
       - name: Build
