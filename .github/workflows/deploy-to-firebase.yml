@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@firebase
+        uses: actions/checkout@main
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
