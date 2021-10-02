@@ -1,5 +1,5 @@
 const config = {
-  clientIdPaypal: String(process.env.CLIENT_ID_PP)
-}
+  clientIdPaypal: String(process.env.CLIENT_ID_PP),
+};
 
-export default config
+export default config;
