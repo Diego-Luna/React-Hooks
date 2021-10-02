@@ -23,6 +23,7 @@ const Payment = ({ history }) => {
   };
 
   const handlePaymentSuccess = (data) => {
+
     if (data.status === 'COMPLETED') {
       const newOrder = {
         buyer,
