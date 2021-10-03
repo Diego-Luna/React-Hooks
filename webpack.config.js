@@ -1,3 +1,5 @@
+const CopyPlugin = require('copy-webpack-plugin');
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -43,6 +45,13 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: 'public/manifest.json', to: '' },
+        { from: 'public/service-worker.js', to: '' },
+        { from: 'public/icon.png', to: 'assets' },
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: './index.html',
@@ -58,14 +67,14 @@ module.exports = {
       defaults: false,
     }),
     new webpack.DefinePlugin({
-      "GOOGLEMAPSAPIKEY": JSON.stringify(process.env.GOOGLEMAPSAPIKEY),
-      "CLIENT_ID_PP": JSON.stringify(process.env.CLIENT_ID_PP),
+      GOOGLEMAPSAPIKEY: JSON.stringify(process.env.GOOGLEMAPSAPIKEY),
+      CLIENT_ID_PP: JSON.stringify(process.env.CLIENT_ID_PP),
     }),
   ],
   devServer: {
     static: path.join(__dirname, 'dist'),
     compress: true,
-    port: 3005,
+    port: 3006,
     historyApiFallback: true,
     open: true,
   },
