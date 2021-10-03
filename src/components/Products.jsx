@@ -8,6 +8,8 @@ import AppContex from '../context/AppContex';
 import '../styles/components/Products.css';
 
 function Products() {
+  // const { products, addToCart } = useContext(AppContex);
+
   const { state, addToCart } = useContext(AppContex);
 
   const { products } = state;
